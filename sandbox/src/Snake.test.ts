@@ -1,6 +1,6 @@
-//import Snake from "./Snake";
+import Snake from "./Snake";
 
-/*const moveSnakes = (times: number, turn: boolean = false) => {
+const moveSnakes = (times: number, turn: boolean = false) => {
   const greenSnake = new Snake("green");
   const maroonSnake = new Snake("maroon");
   let totalSquares = 0;
@@ -15,14 +15,14 @@
     if (turn) {
       const numSquares3 = Math.floor(Math.random() * 100);
       const numSquares4 = Math.floor(Math.random() * 10);
-      greenSnake.turn();
-      maroonSnake.turn();
+      greenSnake.turn("left");
+      maroonSnake.turn("right");
       maroonSnake.move(numSquares3);
       totalSquares -= numSquares3;
       greenSnake.move(numSquares3);
-      maroonSnake.turn();
-      maroonSnake.turn();
-      maroonSnake.turn();
+      maroonSnake.turn("left");
+      maroonSnake.turn("left");
+      maroonSnake.turn("left");
       maroonSnake.move(numSquares4);
       totalSquares += numSquares4;
     }
@@ -48,7 +48,7 @@ describe("Snake Tests", function () {
   });
 });
 
-*/ describe("Addition", function () {
+ describe("Addition", function () {
   it("sums numbers", () => {
     expect(1 + 1).toEqual(2);
   });
