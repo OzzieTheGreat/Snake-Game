@@ -7,9 +7,21 @@ import { useEffect } from "react";
 export default function App() {
   // Add Snake Tests with display below
   useEffect(() => {
-    const snake = new Snake("snake");
-    snake.move(5, 5);
-    snake.turn("right");
+    const greenSnake = new Snake("left");
+    const maroonSnake = new Snake("right");
+    const blueSnake = new Snake("down");
+    greenSnake.turn("left");
+    greenSnake.move(5);
+    maroonSnake.turn("right");
+    maroonSnake.move(3);
+    blueSnake.turn("right");
+    blueSnake.move(7);
+    console.log(greenSnake.position);
+    console.log(maroonSnake.position);
+    console.log(blueSnake.position);
+    console.log(greenSnake.direction);
+    console.log(maroonSnake.direction);
+    console.log(blueSnake.direction);
     // Include your display statements to test below
     document.getElementById("output")!.innerText = "OUTPUT:\n";
     display("hey");
