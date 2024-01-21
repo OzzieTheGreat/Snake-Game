@@ -1,4 +1,3 @@
-import display from "./display";
 
 class Snake {
   private currentPosition: number;
@@ -7,25 +6,25 @@ class Snake {
     this.currentPosition = 0;
     this.currentDirection = snakeDirection;
   }
-  public move(x: number, y: number) {
-    if (x === 0 && y === 0) {
-      return;
-    } else if (x < 0 || y < 0) {
-      return;
+  public move(position: number) {
+    if (this.currentDirection === "right") {
+      this.currentPosition = position + 1;
+    } else if (this.currentDirection === "left") {
+      this.currentPosition = position - 1;
     }
-    display(0, 0, this.currentDirection);
-    display(x, y, this.currentDirection);
-    this.currentPosition = this.currentPosition + 0;
   }
   public turn(direction: string) {
-    if (direction === "right") {
-      this.currentDirection = "right";
-    } else if (direction === "left") {
-      this.currentDirection = "left";
+    if (direction === "foward") {
+      this.currentDirection = "foward";
+    } else if (direction === "backward") {
+      this.currentDirection = "backward";
     }
   }
-  public get Position() {
+  public get position() {
     return this.currentPosition;
+  }
+  public get direction() {
+    return this.currentDirection;
   }
 }
 
