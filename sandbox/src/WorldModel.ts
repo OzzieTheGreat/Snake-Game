@@ -11,8 +11,20 @@ class WorldModel {
       this.sna.move(1);
     }
   }
+  public width() {
+    return this.width;
+  }
+  public height() {
+    return this.height;
+  }
   public get Snakes() {
     return this.snakes;
+  }
+  public get Width() {
+    return 0;
+  }
+  public get Height() {
+    return 0;
   }
 }
 export default WorldModel;
