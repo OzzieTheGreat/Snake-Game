@@ -1,30 +1,28 @@
 import Snake from "./Snake";
+import IWorldView from "./IWorldView";
 class WorldModel {
-  private snakes: string;
-  private sna: Snake;
-  constructor(snakeModel: string, s: Snake) {
-    this.snakes = snakeModel;
-    this.sna = s;
+  private snake: Snake;
+  private worldView: IWorldView | null = null;
+  constructor(snake: Snake) {
+    this.snake = snake;
   }
   public update(steps: number) {
-    for (let i = 0; i < steps; i++) {
-      this.sna.move(1);
+    this.snake.move(steps);
+    if (this.worldView) {
+      this.worldView.display(this);
     }
   }
-  public width() {
+  public get snakePosition(): Snake {
+    return this.snake;
+  }
+  public get width(): number {
     return this.width;
   }
-  public height() {
+  public get height(): number {
     return this.height;
   }
-  public get Snakes() {
-    return this.snakes;
-  }
-  public get Width() {
-    return 0;
-  }
-  public get Height() {
-    return 0;
+  public set view(worldView: IWorldView) {
+    this.worldView = worldView;
   }
 }
 export default WorldModel;
