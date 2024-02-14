@@ -1,22 +1,9 @@
-class Player {
-  private SnakeController: sc;
-  constructor(SnakeController: sc) {
-    this.sc = SnakeController;
+import SnakeController from "./SnakeController";
+abstract class Player {
+  protected sc: SnakeController;
+  constructor(controller: SnakeController) {
+    this.sc = controller;
   }
-  public abtract() {
-    return this.SnakeController;
-  }
-  public makeTurn() {
-    this.SnakeController.turnSnakeLeft(
-      "left",
-      this.SnakeController.worldModel,
-      this.SnakeController.snake,
-    );
-    this.SnakeController.turnSnakeRight(
-      "right",
-      this.SnakeController.worldModel,
-      this.SnakeController.snake,
-    );
-  }
+  abstract makeTurn(): void;
 }
 export default Player;
