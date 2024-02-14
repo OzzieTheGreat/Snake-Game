@@ -1,39 +1,31 @@
-import "./App.css";
+import { useEffect } from "react";
 import "./App.css";
 import Snake from "./Snake";
 import display from "./display";
 import WorldModel from "./WorldModel";
-import { useEffect } from "react";
+import CanvasWorldView from "./CanvasWorldView";
 
 export default function App() {
   // Add Snake Tests with display below
   useEffect(() => {
-    const greenSnakeWorld = new WorldModel("green", "left");
-    const maroonSnakeWorld = new WorldModel("maroon", "right");
-    const blueSnakeWorld = new WorldModel("blue", "down");
-    const greenSnake = new Snake("left", greenSnakeWorld);
-    const maroonSnake = new Snake("right", maroonSnakeWorld);
-    const blueSnake = new Snake("down", blueSnakeWorld);
-    greenSnakeWorld.update(1);
-    maroonSnakeWorld.update(2);
-    blueSnakeWorld.update(3);
-    greenSnake.turn("left");
-    greenSnake.move(5);
-    maroonSnake.turn("right");
-    maroonSnake.move(3);
-    blueSnake.turn("right");
-    blueSnake.move(7);
+    const greenSnake = new Snake();
+    const maroonSnake = new Snake();
+    const greenWorldModel = new WorldModel(greenSnake);
+    const maroonWorldModel = new WorldModel(maroonSnake);
+    const worldView = new CanvasWorldView(5);
+    const greenworld = new WorldModel(greenSnake);
+    const maroonworld = new WorldModel(maroonSnake);
+    greenSnake.move(1);
+    maroonSnake.move(2);
+    greenSnake.turn(3);
+    maroonSnake.turn(4);
     console.log(greenSnake);
-    console.log(greenSnake.position);
-    console.log(maroonSnake.position);
-    console.log(blueSnake.position);
-    console.log(greenSnake.direction);
-    console.log(maroonSnake.direction);
-    console.log(blueSnake.direction);
-    console.log(greenSnakeWorld.Snakes);
-    console.log(maroonSnakeWorld.Snakes);
-    console.log(blueSnakeWorld.Snakes);
-    console.log(greenSnakeWorld.update);
+    console.log(maroonSnake);
+    console.log(greenWorldModel);
+    console.log(maroonWorldModel);
+    console.log(worldView);
+    console.log(greenworld.update(1));
+    console.log(maroonworld.update(2));
     // Include your display statements to test below
     document.getElementById("output")!.innerText = "OUTPUT:\n";
     display("hey");
