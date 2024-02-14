@@ -1,40 +1,47 @@
 import Point from "./Point";
-import WorldModel from "./WorldModel";
 class Snake {
-  private currentPosition: number;
+  private currentPosition: Point;
   private currentDirection: string;
-  private newPoint: Point;
-  private wor: WorldModel;
-  constructor(snakeDirection: string, w: WorldModel) {
-    this.currentPosition = 0;
-    this.currentDirection = snakeDirection;
-    this.newPoint = new Point(0, 0);
-    this.wor = w;
+  constructor() {
+    this.currentPosition = new Point(0, 0);
+    this.currentDirection = "left";
   }
-  public move(position: number) {
+  public move(numOfSpaces: number) {
     if (this.currentDirection === "left") {
-      this.currentPosition = position + 1;
+      this.currentPosition = new Point(
+        this.currentPosition.x + 1,
+        this.currentPosition.y,
+      );
     } else if (this.currentDirection === "right") {
-      this.currentPosition = position - 1;
+      this.currentPosition = new Point(
+        this.currentPosition.x - 1,
+        this.currentPosition.y,
+      );
     }
     if (this.currentDirection === "up") {
-      this.currentPosition = position + 1;
+      this.currentPosition = new Point(
+        this.currentPosition.x,
+        this.currentPosition.y + 1,
+      );
     }
     if (this.currentDirection === "down") {
-      this.currentPosition = position - 1;
+      this.currentPosition = new Point(
+        this.currentPosition.x,
+        this.currentPosition.y - 1,
+      );
     }
   }
   /**
    * @deprecated Use {turn}
    */
-  public turn(direction: string) {
-    if (direction === "up") {
-      this.currentDirection = "up";
-    } else if (direction === "down") {
-      this.currentDirection = "dowm";
+  public turn(direction: number) {
+    if (direction === 0) {
+      this.turnLeft();
+    } else if (direction === 1) {
+      this.turnRight();
     }
   }
-  turnLeft() {
+  public turnLeft() {
     if (this.currentDirection === "left") {
       this.currentDirection = "dowm";
     } else if (this.currentDirection === "right") {
@@ -49,21 +56,18 @@ class Snake {
     if (this.currentDirection === "left") {
       this.currentDirection = "up";
     } else if (this.currentDirection === "right") {
-      this.currentDirection = "dowm";
+      this.currentDirection = "down";
     } else if (this.currentDirection === "up") {
       this.currentDirection = "right";
     } else if (this.currentDirection === "down") {
       this.currentDirection = "left";
     }
   }
-  public get position() {
+  public get position(): Point {
     return this.currentPosition;
   }
-  public get direction() {
+  public get direction(): string {
     return this.currentDirection;
-  }
-  public set worldmodel(w: WorldModel) {
-    this.wor = w;
   }
 }
 
