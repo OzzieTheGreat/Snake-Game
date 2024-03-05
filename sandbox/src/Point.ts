@@ -5,6 +5,12 @@ class Point {
     this.xcoord = xcoord;
     this.ycoord = ycoord;
   }
+  public turnSnakeLeft() {
+    this.xcoord--;
+  }
+  public turnSnakeRight() {
+    this.xcoord++;
+  }
   public get x(): number {
     return this.xcoord;
   }
