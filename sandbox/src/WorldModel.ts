@@ -1,9 +1,11 @@
 import Snake from "./Snake";
+import Point from "./Point";
 import IWorldView from "./IWorldView";
 class WorldModel {
   private snake: Snake;
-  private worldView: IWorldView | null = null;
+  private worldView: IWorldView | null;
   constructor(snake: Snake) {
+    this.worldView = null;
     this.snake = snake;
   }
   public update(steps: number) {
@@ -12,8 +14,8 @@ class WorldModel {
       this.worldView.display(this);
     }
   }
-  public get snakePosition(): Snake {
-    return this.snake;
+  public get snakePosition(): Point {
+    return this.snake.position;
   }
   public get width(): number {
     return this.width;
@@ -26,3 +28,4 @@ class WorldModel {
   }
 }
 export default WorldModel;
+
