@@ -8,16 +8,14 @@ class AvoidWallsPlayer extends Player {
     const dir = this.sc.snakeDirection;
     const snake = this.sc.snakePosition;
 
-    if (dir === "left" && snake.position.y === 0) {
-      this.sc.snakePosition.turnRight();
-    } else if (
-      dir === "right" &&
-      snake.position.y === this.sc.worldHeight - 1
-    ) {
-      this.sc.snakePosition.turnLeft();
-    } else if (dir === "up" && snake.position.x === 0) {
-    } else if (dir === "down" && snake.position.x === this.sc.worldWidth - 1) {
+    if (dir === "left" && snake.y === 0) {
+      this.sc.snakePosition.turnSnakeRight();
+    } else if (dir === "right" && snake.y === this.sc.worldHeight - 1) {
+      this.sc.snakePosition.turnSnakeLeft();
+    } else if (dir === "up" && snake.x === 0) {
+    } else if (dir === "down" && snake.x === this.sc.worldWidth - 1) {
     }
   }
 }
 export default AvoidWallsPlayer;
+
