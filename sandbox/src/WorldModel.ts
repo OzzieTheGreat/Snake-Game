@@ -1,21 +1,38 @@
 import Snake from "./Snake";
 import Point from "./Point";
 import IWorldView from "./IWorldView";
+import CanvasWorldView from "./CanvasWorldView";
+import Actor from "./Actor"
+import ArrayIterator from "./ArrayIterator";
 class WorldModel {
-  private snake: Snake;
+  private actors: Actor[];
+  private allSnakes: Snake[] = [];
+  private allViews: IWorldView[] = [];
   private worldView: IWorldView | null;
-  constructor(snake: Snake) {
+  constructor(aca:string) {
+    this.actors = [];
+    this.allViews = [];
     this.worldView = null;
-    this.snake = snake;
   }
   public update(steps: number) {
-    this.snake.move(steps);
-    if (this.worldView) {
-      this.worldView.display(this);
+    this.allSnakes[0].move(steps);
+    if (this.allViews) {
+      this.allViews[0].display(this);
     }
+    this.allSnakes.forEach((s) => s.move(0));
+    this.allViews.forEach((v) => v.display(this));
   }
+
+  public addSnake(s: Snake) {
+    this.allSnakes.push(s);
+  }
+
+  public addView(v: IWorldView) {
+    this.allViews.push(v);
+  }
+
   public get snakePosition(): Point {
-    return this.snake.position;
+    return this.allSnakes[0].position;
   }
   public get width(): number {
     return this.width;
@@ -23,8 +40,11 @@ class WorldModel {
   public get height(): number {
     return this.height;
   }
-  public set view(worldView: IWorldView) {
-    this.worldView = worldView;
+  public get actorslist()  {
+    return new ArrayIterator(this.actors);
+  }
+  public set view(allViews: IWorldView) {
+    this.allViews[0] = allViews;
   }
 }
 export default WorldModel;
