@@ -5,5 +5,8 @@ abstract class Player {
     this.sc = controller;
   }
   abstract makeTurn(): void;
+  public isActive(): boolean {
+    return true;
+  }
 }
 export default Player;
