@@ -1,4 +1,4 @@
-=class Point {
+class Point {
   private xcoord: number;
   private ycoord: number;
 
