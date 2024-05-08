@@ -9,10 +9,10 @@ class SnakeController {
     this.slitherer = snake;
   }
   public turnSnakeLeft() {
-    this.slitherer.position.turnSnakeLeft();
+    this.slitherer.turnLeft();
   }
   public turnSnakeRight() {
-    this.slitherer.position.turnSnakeRight();
+    this.slitherer.turnRight();
   }
   public get snakePosition(): Point {
     return this.slitherer.position;
@@ -25,6 +25,9 @@ class SnakeController {
   }
   public get worldHeight(): number {
     return this.snakeWorld.height;
+  }
+  public get isSnakeActive(): boolean {
+    return true;
   }
 }
 
