@@ -1,16 +1,21 @@
-class Point {
+=class Point {
   private xcoord: number;
   private ycoord: number;
+
   constructor(xcoord: number, ycoord: number) {
     this.xcoord = xcoord;
     this.ycoord = ycoord;
   }
-  public turnSnakeLeft() {
+  public turnLeft() {
     this.xcoord--;
   }
-  public turnSnakeRight() {
+  public turnRight() {
     this.xcoord++;
   }
+  public equals(p: Point) {
+    return this.xcoord === p.xcoord && this.ycoord === p.ycoord;
+  }
+
   public get x(): number {
     return this.xcoord;
   }
