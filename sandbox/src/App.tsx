@@ -1,34 +1,43 @@
 import "./App.css";
 import { useEffect } from "react";
+import Display from "./Display";
 import display from "./display";
 import Snake from "./Snake";
 import WorldModel from "./WorldModel";
 import CanvasWorldView from "./CanvasWorldView";
-import checkerboard from "./checkerboard.jpg";
-export default function App() {
-  // Add Snake Tests with display below
-  useEffect(() => {
-    const gameCanvas = document.getElementById("game") as HTMLCanvasElement;
-    if (gameCanvas) {
-      const ctx = gameCanvas.getContext("2d");
-      const floorImage = new Image(256, 256);
-      floorImage.src = checkerboard;
-      floorImage.onload = () => {
-        ctx?.drawImage(floorImage, 5, 10);
-      };
-    }
+import ActorCollisionHandler from "./ActorCollisionHandlers";
+import SnakeSnakeCollisionHandler from "./SnakeSnakeCollisionHandler";
+import SnakeFoodCollisionHandler from "./SnakeSnakeCollisionHandler";
+import GameController from "./GameController";
 
-    const greenSnake = new Snake();
-    const maroonSnake = new Snake();
-    const greenWorldModel = new WorldModel(greenSnake);
-    const maroonWorldModel = new WorldModel(maroonSnake);
+export default function App() {
+  useEffect(() => {
+    const greenSnake = new Snake(0, 0);
+    const maroonSnake = new Snake(0, 0);
+    const greenWorldModel = new WorldModel("snake");
+    const maroonWorldModel = new WorldModel("snake");
     const worldView = new CanvasWorldView(5);
-    const greenworld = new WorldModel(greenSnake);
-    const maroonworld = new WorldModel(maroonSnake);
+    const greenworld = new WorldModel("snake");
+    const maroonworld = new WorldModel("snake");
+    const collisionHand = new ActorCollisionHandler();
     greenSnake.move(1);
     maroonSnake.move(2);
     greenSnake.turn(3);
     maroonSnake.turn(4);
+    greenWorldModel.addSnake(greenSnake);
+    maroonWorldModel.addSnake(maroonSnake);
+    greenworld.addView(worldView);
+    maroonworld.addView(worldView);
+    collisionHand.addCollisionAction(
+      "Snake",
+      "Food",
+      new SnakeFoodCollisionHandler(),
+    );
+    collisionHand.addCollisionAction(
+      "Snake",
+      "Snake",
+      new SnakeSnakeCollisionHandler(),
+    );
     console.log(greenSnake);
     console.log(maroonSnake);
     console.log(greenWorldModel);
@@ -37,17 +46,14 @@ export default function App() {
     console.log(greenworld.update(1));
     console.log(maroonworld.update(2));
 
-    // Include your display statements to test below
     document.getElementById("output")!.innerText = "OUTPUT:\n";
     display("hey");
   }, []);
   return (
     <div className="App">
-      <canvas width="320" height="330" id="game"></canvas>
-      <h1>Snake Game</h1>
-      <pre id="output">
-        OUTPUT: <br />
-      </pre>
+      <h1>Hello CodeSandbox</h1>
+      <h2>Start editing to see some magic happen!</h2>
+      <Display />
     </div>
   );
 }
